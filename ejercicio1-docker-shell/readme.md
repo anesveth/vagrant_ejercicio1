@@ -8,4 +8,4 @@ $ vagrant up
 $ vagrant provision
 # En caso ya se haya hecho up antes, corre la shell del Vagrantfile que ejecuta la imagen de Docker de hello-world
 ```
-![Alt text](ejercicio1-docker-shell/imagen_ejercicio1_shell.png?raw=true "Screenshot de que funciona")
+![Alt text](imagen_ejercicio1_shell.png?raw=true "Screenshot de que funciona")

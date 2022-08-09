@@ -7,5 +7,5 @@ $ vagrant up
 $ vagrant provision
 # En caso ya se haya hecho up antes, corre las task del playbook
 ```
-![Alt text](ejercicio1-docker-ansible/imagen_ej1_ansible.png?raw=true "Screenshot de que funciona")
+![Alt text](imagen_ej1_ansible.png?raw=true "Screenshot de que funciona")
 
