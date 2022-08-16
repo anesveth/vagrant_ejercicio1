@@ -7,7 +7,6 @@
       ansible.builtin.apt: 
         update_cache: yes 
         force_apt_get: yes 
-        cache_valid_time: 3600
     
     - name: Install dependencies
       package:
@@ -22,11 +21,7 @@
     #   ansible.builtin.apt:
     #     name: docker
     #     state: present
-    - name: Install docker
-      apt:
-        name: docker-ce
-        state: latest
-        update_cache: true
+    
 
     - name: Add Docker GPG apt Key
       apt_key:
@@ -38,6 +33,12 @@
         repo: deb https://download.docker.com/linux/ubuntu focal stable
         state: present
 
+    - name: Install docker
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+
     - name: Reload service to pick up config changes
       ansible.builtin.systemd:
         daemon_reload: yes
@@ -47,12 +48,7 @@
     - debug:
         msg: Docker installed!
       when: "'docker' in services"
-  
 
-    # - name: Install Docker Python Module
-    #   pip:
-    #     name: docker
-    
     - name: Start Docker Service
       service:
         name: docker
@@ -61,8 +57,15 @@
     - name: Run hello-world
       docker_container:
         name: hello-world
-        image: library/hello-world
-        
+        image: hello-world:latest
+        interactive: yes
+        detach: false
+      register: container_output
+
+    - name: Print container message
+      service_facts:
+    - debug:
+        msg: "{{ container_output }}"   
     # - name: Run hello-world
     #   docker_container:
     #     name: hello-world
